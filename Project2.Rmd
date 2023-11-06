@@ -1,0 +1,45 @@
+---
+title: "Project 2"
+author: "Han Ji"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+# remember to set them to FALSE
+knitr::opts_chunk$set(echo = T)
+knitr::opts_chunk$set(include = T)
+knitr::opts_chunk$set(warning = F)
+knitr::opts_chunk$set(message = F)
+knitr::opts_chunk$set(eval = F)
+
+knitr::opts_chunk$set(fig.height = 8)
+knitr::opts_chunk$set(fig.width = 12)
+knitr::opts_chunk$set(fig.align="center")
+
+# Packages
+library(tidyverse)
+library(gtsummary)
+library(kableExtra)
+```
+
+
+```{r}
+# Read data and basic processing
+df_child <- read.csv("project2.csv")
+df_child$center <- factor(df_child$center)
+```
+
+```{r}
+tbl_summary(data = df_child[, -1])
+```
+
+
+\newpage
+
+# Code Appendix:
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE, include=TRUE}
+
+```
+
