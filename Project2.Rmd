@@ -21,18 +21,98 @@ knitr::opts_chunk$set(fig.align="center")
 library(tidyverse)
 library(gtsummary)
 library(kableExtra)
+library(glmmLasso)
 ```
-
 
 ```{r}
 # Read data and basic processing
-df_child <- read.csv("project2.csv")
+df_child_original <- read.csv("project2.csv")
+```
+
+
+```{r}
+df_child <- df_child_original
+df_child %>%
+  group_by(record_id) %>% 
+  summarise(n = n()) %>% 
+  arrange(desc(n)) %>% 
+  head(10) # 2000824 - 4 copies, all the same
+
+df_child <- df_child %>%
+  group_by(record_id) %>%
+  slice(1)
+
+# factorize
 df_child$center <- factor(df_child$center)
+df_child$prenat_ster <- factor(df_child$prenat_ster)
+df_child$com_prenat_ster <- factor(df_child$com_prenat_ster)
+df_child$mat_chorio <- factor(df_child$mat_chorio)
+df_child$gender <- factor(df_child$gender)
+df_child$sga <- factor(df_child$sga)
+df_child$any_surf <- factor(df_child$any_surf)
+df_child$Death <- ifelse(df_child$Death == "Yes", 1, 0)
+
+# fill in the ones for centers - all in center 1
+# this missing seems no reasons
+df_child$center[is.na(df_child$center)] <- 1
+
+# Create the new outcome based on Trach and Death
+df_child$outcome <- ifelse(df_child$Trach == 1 | df_child$Death == 1,
+                           1, 0)
 ```
 
 ```{r}
-tbl_summary(data = df_child[, -1])
+# the subset we will focus on
+df_child_sub <- df_child %>%
+  filter(!center %in% c(20, 21)) %>% 
+  dplyr::select(-c(record_id, weight_today.44:med_ph.44)) %>% 
+  mutate(center = factor(center))
+
+# remove the ones with missing death
+
 ```
+
+
+```{r}
+df_child_sub %>%
+  tbl_summary(by = "center") %>% 
+  add_p(all_categorical() ~ "chisq.test")
+```
+
+```{r}
+df_child[,-1] %>% 
+  filter(center %in% c(5, 7, 20, 21)) %>% 
+  dplyr::select(-c(weight_today.44:med_ph.44)) %>% 
+  mutate(center = factor(center)) %>% 
+  tbl_summary(by = "center") %>% 
+  add_p(#all_continuous() ~ "aov",
+        all_categorical() ~ "chisq.test")
+```
+
+
+```{r}
+tbl_summary(data = df_child[, -1], by = "center") %>% 
+  add_p(all_categorical() ~ "chisq.test")
+```
+
+-   The 2nd center is the biggest (n=633), 20 and 21 are the smallest (n=4 and n=1)
+-   Not hispanic or Latino overall
+-   Baseline characteristic:
+    -   birth weight highest in 20, 16; lowest in 5 and 21
+    -   gestational age lowest in 5, 21
+    -   birth length lowest in 5, 21
+    -   birth head circumference shortest 5, 21
+    -   delivery method not sign.
+    -   prenatal cort. not sign.
+    -   com_prenat_ster, sign. - could be related to outcome
+    -   Maternal Chorioamnionitis (negative) 
+
+
+```{r}
+#
+```
+
+
 
 
 \newpage
@@ -42,4 +122,3 @@ tbl_summary(data = df_child[, -1])
 ```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE, include=TRUE}
 
 ```
-
