@@ -51,3 +51,7 @@ project2.csv
 Project 2.Rproj
 Copy of project2_codebook.xlsx
 glmmLasso_example.R
+*.xlsx
+*.RDS
+*.log
+.DS_Store
