@@ -22,6 +22,98 @@ The fitted models are evaluated on the validation set split from the original da
 
 In conclusion, this study provides a prediction model for BPD outcomes with easily accessible clinical measurements, and it accommodates the complexity of clinical settings and measurements at different timing. These results potentially lead to individualized care for premature infants with severe BPD at early stages.
 
+## Main Results
+
+Model performance on the evaluation data set at 36 weeks. The values are obtained at the optimal threshold of each model determined by Youden’s J statistics.
+
+<table>
+<thead>
+  <tr>
+    <th></th>
+    <th>Lasso (with center)</th>
+    <th>Lasso (without center)</th>
+    <th>Multilevel lasso</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Threshold </td>
+    <td>0.104</td>
+    <td>0.138</td>
+    <td>0.135</td>
+  </tr>
+  <tr>
+    <td>Sensitivity</td>
+    <td>0.769</td>
+    <td>0.742</td>
+    <td>0.780</td>
+  </tr>
+  <tr>
+    <td>Specificity</td>
+    <td>0.772</td>
+    <td>0.773</td>
+    <td>0.762</td>
+  </tr>
+  <tr>
+    <td>AUC</td>
+    <td>0.793</td>
+    <td>0.781</td>
+    <td>0.810</td>
+  </tr>
+  <tr>
+    <td>F-score</td>
+    <td>0.551</td>
+    <td>0.537</td>
+    <td>0.548</td>
+  </tr>
+</tbody>
+</table>
+
+Model performance on the evaluation data set at 44 weeks. The values are obtained at the optimal threshold of each model determined by Youden’s J statistics.
+
+<table>
+<thead>
+  <tr>
+    <th></th>
+    <th>Lasso (with center)</th>
+    <th>Lasso (without center)</th>
+    <th>Multilevel lasso</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Threshold </td>
+    <td>0.191</td>
+    <td>0.211</td>
+    <td>0.212</td>
+  </tr>
+  <tr>
+    <td>Sensitivity</td>
+    <td>0.813</td>
+    <td>0.806</td>
+    <td>0.819</td>
+  </tr>
+  <tr>
+    <td>Specificity</td>
+    <td>0.809</td>
+    <td>0.770</td>
+    <td>0.771</td>
+  </tr>
+  <tr>
+    <td>AUC</td>
+    <td>0.858</td>
+    <td>0.849</td>
+    <td>0.855</td>
+  </tr>
+  <tr>
+    <td>F-score</td>
+    <td>0.555</td>
+    <td>0.512</td>
+    <td>0.519</td>
+  </tr>
+</tbody>
+</table>
+
 ## Code Availability
 
 The code used for processing, EDA, and modeling are attached after the main text.
