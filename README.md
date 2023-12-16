@@ -2,25 +2,25 @@
 
 ## Title
 
-Tracheostomy/Death Prediction Model in Neonates with Severe Bronchopulmonary Dysplasia at 36-week Gestational Age
+Tracheostomy/Death Prediction Model in Neonates with Severe Bronchopulmonary Dysplasia at 36-week and 44-week Gestational Age
 
 ## Description
 
 ### Background
 
-Bronchopulmonary dysplasia (BPD) is a chronic lung condition affecting 10,000 to 15,000 premature infants annually in the United States. Despite advances in neonatal care, the number of severe BPD cases remain steady, particularly among extremely low birth weight (ELBW) infants.
+Bronchopulmonary dysplasia (BPD) is a chronic lung condition affecting 10,000 to 15,000 premature infants annually in the United States. Despite advances in neonatal care, the number of severe BPD cases remain steady, particularly among extremely low birth weight (ELBW) infants (Kalikkot Thekkeveedu et al. 2017). 
 
 ### Methods
 
-This study addresses the critical need for effective prediction models for composite BPD outcomes - the potential need for tracheostomy and death. Based on the records of infants with severe BPD across the US and Sweden from BPD Collaborative Registry (n = 985), we developed three predictor models: Lasso regression with and without center and multilevel lasso regression with center as a random effect. Multiple imputation was performed to address missing data, and 5-fold cross-validation was performed to optimize the hyperparameter.
+This study addresses the critical need for effective prediction models for composite BPD outcomes - the potential need for tracheostomy and death as well as timing. Based on the records of infants with severe BPD across the US and Sweden from BPD Collaborative Registry (n = 985 and n = 615 at 36 weeks and 44 weeks, respectively), we developed three predictor models at each timing, lasso regression with and without center and multilevel lasso regression with center as a random effect. Multiple imputation was performed to address missing data.
 
 ### Results
 
-The fitted models are evaluated on the validation set split from the original data, and the mul- tilevel lasso model has the best performance (AUC = 0.910). Our findings reveal significant variability in outcomes across different centers, underscoring the importance of considering clinical setting heterogeneity. Meanwhile, the estimates agree that ventilation support, inspired oxygen, prenatal corticosteriod, and hos- pital discharge gestational age are the most significant predictors, consistent with the existing literature. However, limitations such as potential bias due to variable missing proportions across centers and the chal- lenge of predicting outcomes for centers not represented in the training data were acknowledged. Also, one of the predictors hospital discharge gestational age may need an additional model to simulate.
+The fitted models are evaluated on the validation set split from the original data, and the multilevel lasso model has the best performance overall(AUC = 0.810 and 0.855). Considering measurements at 44-week improved the performance of all three models. Our findings reveal significant variability in outcomes across different centers, underscoring the importance of considering clinical setting heterogeneity and timing. Meanwhile, the estimates agree that ventilation support, inspired oxygen, prenatal corticosteriod, and hospital discharge gestational age are the most significant predictors, consistent with the existing literature. However, limitations such as potential bias due to variable missing proportions across centers and the challenge of predicting outcomes for centers not represented in the training data were acknowledged. Also, the resulting model need to adjust for calibration.
 
 ### Conclusion
 
-This study provides a prediction model for BPD outcomes with easily accessible clinical measurements, and it accommodates the complexity of clinical settings. These results potentially lead to individualized care for premature infants with severe BPD at early stages.
+In conclusion, this study provides a prediction model for BPD outcomes with easily accessible clinical measurements, and it accommodates the complexity of clinical settings and measurements at different timing. These results potentially lead to individualized care for premature infants with severe BPD at early stages.
 
 ## Code Availability
 
